@@ -2,13 +2,15 @@ public class MagazzinoSmartphone {
     private Smartphone[] smartphones;
     private int count;
 
+    // Costruttore Default
     public MagazzinoSmartphone() {
         smartphones = new Smartphone[10]; // Assuming initial capacity of 10
         count = 0;
     }
 
+    // Costruttore Master
     public MagazzinoSmartphone(MagazzinoSmartphone other) {
-        //smartphones = new Smartphone[10];
+        smartphones = new Smartphone[10];
         for (int i = 0; i < smartphones.length; i++) {
             if (other.smartphones[i] != null) {
                 smartphones[i] = new Smartphone(other.smartphones[i]);
@@ -17,7 +19,7 @@ public class MagazzinoSmartphone {
         }
     }
 
-
+    // Metodo aggiungi Smartphone
     public void addSmartphone(Smartphone smartphone) {
         // smartphones = new Smartphone[10];
         if (smartphones[count] == null) {
@@ -26,6 +28,7 @@ public class MagazzinoSmartphone {
         }
     }
 
+    // Metodo rimuovi Smartphone
     public void removeSmartphone(Smartphone smartphone) {
         // smartphones = new Smartphone[10];
         for (int i = 0; i < smartphones.length; i++) {
@@ -38,13 +41,14 @@ public class MagazzinoSmartphone {
         }
     }
 
+    // Metodo che restituisce l'array di Smartphone
     public Smartphone[] getSmartphonesArray() {
         Smartphone[] smartphoneArray = new Smartphone[count];
         System.arraycopy(smartphones, 0, smartphoneArray, 0, count);
         return smartphoneArray;
     }
 
-
+    // Metodo che ricerca uno Smartphone per Brand
     public Smartphone getSmartphoneByBrand(String brand) {
         Smartphone smartphone = null;
         int i = 0;
@@ -61,6 +65,7 @@ public class MagazzinoSmartphone {
         return smartphone;
     }
 
+    // Metodo che restituisce uno Smartphone per capacità di memoria
     public MagazzinoSmartphone getSmartphonesByStorageCapacity(int storageCapacity) {
         MagazzinoSmartphone magazzinoSmartphone = new MagazzinoSmartphone();
         int i = 0;
@@ -77,6 +82,7 @@ public class MagazzinoSmartphone {
         return magazzinoSmartphone;
     }
 
+    // Metodo che restituisce uno Smartphone per range di prezzo
     public MagazzinoSmartphone getSmartphonesByPriceRange(double minPrice, double maxPrice) {
         MagazzinoSmartphone magazzinoSmartphone = new MagazzinoSmartphone();
         for (int i = 0; i < smartphones.length; i++) {
@@ -89,24 +95,26 @@ public class MagazzinoSmartphone {
         return magazzinoSmartphone;
     }
 
+    // Metodo tostring
     @Override
     public String toString() {
         String result = "\nMagazzinoSmartphone:\n";
         for (int i = 0; i < smartphones.length; i++) {
             if (smartphones[i] != null) {
                 result += "Brand: " + smartphones[i].getBrand()+  ", Model: " + smartphones[i].getModel()
-                          + ", Storage Capacity: " + smartphones[i].getStorageCapacity() +", Price: "
+                          + ", Storage Capacity: " + smartphones[i].getStorageCapacity() +"GB, Price: "
                           + smartphones[i].getPrice() + "\n";
             }
         }
         return result;
     }
 
-
+    // Metodo che restituisce il contatore degli Smartphone presenti nel'array
     public int getCount() {
         return count;
     }
 
+    // Metodo equals
     public boolean equals(Object obj) {
         boolean r = false;
         if (this == obj) {
@@ -122,11 +130,9 @@ public class MagazzinoSmartphone {
                         r = true;
                 }
                 }
-                
             }
         }
         return r;
     }
-
 
 }
